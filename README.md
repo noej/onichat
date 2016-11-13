@@ -9,10 +9,10 @@
 
 ### Login Credentials
 
-username: maria
-password: PaSSw0rd
-username: juan
-password: PaSSw0rd
+username: maria    
+password: PaSSw0rd   
+username: juan   
+password: PaSSw0rd   
 
 ### To chat with user juan:
 
