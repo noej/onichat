@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <title>LiveChat - Login</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { padding: 3px; width: 100%; }
+      form input { display: block; margin: 10px; padding: 5px; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; margin: 10px; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+  </head>
+  <body>
+    <h1>Login</h1>
+    <form action="">
+      <input id="username" autocomplete="off" placeholder="username" />
+      <input id="password" autocomplete="off" placeholder="password" />
+      <button>Login</button>
+    </form>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      $('form').submit(function(){
+        $.post('/login', { username: $('#username').val(), password: $('#password').val() }, function(res) {
+            if(typeof(window.Storage) !== undefined) {
+              if(typeof(res.id) !== 'undefined') {
+                window.sessionStorage.setItem('user', JSON.stringify(res));
+                window.location = '/'
+              } else {
+                alert('Invalid username or password');
+              }
+            } else {
+              console.log("Local Storage not available");
+            }
+        });
+        return false;
+      });
+    </script>
+  </body>
+</html>
+
